@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Navbar from './components/navbar/navbar';
+import Propos from './components/propos/propos';
+import Competence from './components/competences/competence';
+import Projet from './components/projets/projet';
+import Experience from './components/experiences/experience';
+import Contact from './components/contact/contact';
 
 function App() {
+  const [currentLanguage, setCurrentLanguage] = useState('fr');
+
+  const handleLanguageChange = (newLanguage) => {
+    setCurrentLanguage(newLanguage);
+    console.log('Langue changée vers:', newLanguage);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar 
+        logo="/logoportfolio-removebg-preview.png" 
+        currentLanguage={currentLanguage}
+        onLanguageChange={handleLanguageChange}
+      />
+      <main className="main-content">
+        <Propos currentLanguage={currentLanguage} />
+        <Competence currentLanguage={currentLanguage} />
+        <Projet currentLanguage={currentLanguage} />
+        <Experience currentLanguage={currentLanguage} />
+        <Contact currentLanguage={currentLanguage} />
+      </main>
     </div>
   );
 }
 
-export default App;
+export default App; 
